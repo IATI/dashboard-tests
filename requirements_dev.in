@@ -1,13 +1,9 @@
 bdd-tester==0.0.6
-coverage==4.5.2
-coveralls==1.5.1
-lxml==4.9.1
-pytest==4.0.2
-pytest-cov==2.6.0
+lxml
+pytest
+pytest-cov
 
-# Pin this due to an error from pytest
-# https://stackoverflow.com/questions/58189683/typeerror-attrib-got-an-unexpected-keyword-argument-convert
-attrs==19.1.*
-# Install a major version of gerkin that existed for the most recent bdd-tester releases
-# (More recent versions have a different data structure, so bdd-tester fails).
+# bdd-tester 0.0.6 expects the pre-5 gherkin parse tree. From v5 onwards scenarios
+# are nested differently under feature['children'] and BDDTester._gherkinify_feature
+# fails, so this stays pinned until the runner is updated.
 gherkin-official<5

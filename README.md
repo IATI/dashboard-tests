@@ -52,6 +52,8 @@ pip install -r requirements_dev.txt
 pytest
 ```
 
+Tested against Python 3.10 to 3.14.
+
 ## Licence
 
 MIT — see [LICENSE](LICENSE). The test definitions derive from Publish What You Fund's
