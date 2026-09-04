@@ -18,6 +18,12 @@ def given_mixed_content(xml, **kwargs):
     raise StepException(msg)
 
 
+@given(r'this test is not yet implemented')
+def given_not_implemented(xml, **kwargs):
+    msg = 'Not yet implemented'
+    raise StepException(msg)
+
+
 @given(r'an IATI activity')
 def an_iati_activity(xml, **kwargs):
     if xml.tag != 'iati-activity':

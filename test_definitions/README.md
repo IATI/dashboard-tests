@@ -20,7 +20,7 @@ dimension. File names follow the indicator numbering used in the proposal.
 
 | # | Indicator | File | ATI test |
 | --- | --- | --- | --- |
-| 2.1 | Reporting Organisation | *not yet written* | — |
+| 2.1 | Reporting Organisation | `2_basic/2.1_reporting_organisation.feature` | — |
 | 2.2 | IATI Identifier | `2_basic/2.2_iati_identifier.feature` | 25 |
 | 2.3 | Implementing organisation (name and type) | `2_basic/2.3_implementing_organisation.feature` | 30 |
 | 2.4 | Title | `2_basic/2.4_title.feature` | 16 |
@@ -28,7 +28,7 @@ dimension. File names follow the indicator numbering used in the proposal.
 | 2.6 | Current status | `2_basic/2.6_current_status.feature` | 20 |
 | 2.7 | Dates (start / end; planned / actual) | `2_basic/2.7_dates.feature` | 18, 19 |
 | 2.8 | Sector | `2_basic/2.8_sector.feature` | 22, 15 |
-| 2.9 | Country or region | *not yet written* | — |
+| 2.9 | Country or region | `2_basic/2.9_country_or_region.feature` | — |
 | 2.10 | Aid Type | `2_basic/2.10_aid_type.feature` | 27 |
 | 2.11 | Flow Type | `2_basic/2.11_flow_type.feature` | 26 |
 | 2.12 | Finance Type | `2_basic/2.12_finance_type.feature` | 28 |
@@ -50,7 +50,7 @@ dimension. File names follow the indicator numbering used in the proposal.
 | 4.1 | Contact info | `4_advanced/4.1_contact_info.feature` | 21 |
 | 4.2 | Location (sub-national) | `4_advanced/4.2_location.feature` | 23 |
 | 4.3 | Capital spend | `4_advanced/4.3_capital_spend.feature` | 15 |
-| 4.4 | Recipient language | *not yet written* | — |
+| 4.4 | Recipient language | `4_advanced/4.4_recipient_language.feature` | — |
 | 4.5 | Results | `4_advanced/4.5_results.feature` | 35 |
 | 4.6 | Conditions | `4_advanced/4.6_conditions.feature` | 24 |
 | 4.7 | Organisation identifiers | `4_advanced/4.7_organisation_identifiers.feature` | 30 |
@@ -71,26 +71,28 @@ dimension. File names follow the indicator numbering used in the proposal.
 
 ## Still to do
 
-Tests that the proposal requires but which have no definition yet — placeholders for
-these are the next step:
+Every indicator in the proposal now has a file. Three of them are placeholders that
+return "not relevant" rather than a result, so they are excluded from scoring until
+they can be written:
 
-- **2.1 Reporting Organisation** — no test exists; `reporting-org/@ref` is currently
-  only referenced from within the IATI Identifier test.
-- **2.9 Country or region** — no test exists.
-- **4.4 Recipient language** — no test exists. Title and description should be in one
-  of the recipient country's official languages.
+- **3.3 Traceability** — needs both organisation and activity files. The proposal
+  redefines it as the share of a publisher's spend traceable to downstream partners,
+  with the direction of traceability depending on publisher type. The Dashboard
+  already runs these tests so we need to find a way to pull them in.
+- **4.4 Recipient language** — needs a mapping from recipient country to official
+  languages, which the runner has no access to.
+- **4.7 Organisation identifiers** — needs both organisation and activity files. The
+  proposal requires assessing whether organisation identifiers are correctly
+  structured. The Dashboard already runs these tests so we need to find a way to pull
+  them in.
 
-Existing definitions that the proposal changes, flagged with `TODO` comments in the
+Definitions that need confirming or extending, flagged with `TODO` comments in the
 files themselves:
 
-- **2.3 Implementing organisation** — currently checks `@ref` or narrative only; the
-  proposal also requires assessing `participating-org/@type`.
-- **3.3 Traceability** — currently a placeholder that skips (it needs both organisation
-  and activity files). The proposal redefines it as the share of a publisher's spend
-  traceable to downstream partners, with the direction of traceability depending on
-  publisher type. The Dashboard already runs these tests so we need to find a way to pull them in.
-- **4.7 Organisation identifiers** — currently a placeholder that skips. The proposal
-  requires assessing whether organisation identifiers are correctly structured. The Dashboard already runs these tests so we need to find a way to pull them in.
+- **2.1 Reporting Organisation** — new. The tests don't currently test whether the organisation's name is present.
+- **2.3 Implementing organisation** — currently checks `@ref` or narrative only; the proposal also requires assessing `participating-org/@type`. This should possibly be done as a separate test.
+- **2.9 Country or region** — new. Codes are not
+  yet validated against the Country and Region codelists.
 
 ## Open questions
 
@@ -109,14 +111,8 @@ files themselves:
 
   Two things still need deciding:
 
-  - `reporting-org/@type` is optional, and `is one of` treats an absent value as
-    passing. An activity with no `@type` therefore satisfies *both* sides of a
-    complementary pair of guards, and would be counted under each. Either the guard
-    steps need a stricter variant, or missing `@type` needs a defined default.
-  - `@type` is self-declared per file and can disagree with the organisation type
-    registered for that publisher on the IATI Registry. Since the Dashboard groups
-    publishers by type, which of the two is authoritative should be settled before
-    these guards are written.
+  - when checking for the `reporting-org/@type`, `is one of` treats an absent value as
+    passing.
 - **`4.2_location_activity_scope_exclusion.feature`** duplicates the location test with
   an additional `activity-scope` exclusion. Annex 4 of the proposal specifies the
   location test without it. One of the two should be dropped.
@@ -131,6 +127,9 @@ files themselves:
   a test applies to. Note that the pinned `bdd-tester` does not expose feature-level
   tags to scenarios at runtime — `Test.tags` is always empty — so nothing should depend
   on reading them back from the parser.
+- Placeholder tests use `Given this test is not yet implemented`, which returns
+  "not relevant" for every input. Note that this is indistinguishable, in the result,
+  from a genuine publisher-type exclusion.
 - `current_data.feature` defines the "activity is current" precondition shared by most
   activity-level tests. It is implemented in `step_definitions.py` rather than composed
   from the feature file.
