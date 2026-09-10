@@ -24,6 +24,35 @@ def given_not_implemented(xml, **kwargs):
     raise StepException(msg)
 
 
+# The proposal restricts some indicators to projects above a value threshold - see
+# 4.6 Conditions and the introduction to 4.8 Documents, which notes that project
+# evaluations "may not be realistic or reasonable to expect for smaller projects".
+#
+# The activity's value will be calculated for the whole activity in
+# advance, in USD, and passed in as `activity_value`, rather than being derived from
+# the XML here: working it out requires currency conversion and a decision about
+# which transactions count, neither of which belongs in an individual test. The
+# runner does not supply it yet.
+#
+# Until it does, this step deliberately does not filter anything, so the tests that
+# use it carry the threshold in their definition while continuing to behave exactly
+# as they do today. This matches how the other guard steps treat a value they cannot
+# evaluate. The alternative - skipping every activity - would silently drop several
+# working document tests out of scoring.
+@given(r'the activity value is at least (\d+) USD')
+def given_activity_value_at_least(xml, threshold, **kwargs):
+    value = kwargs.get('activity_value')
+    if value is None:
+        return xml
+
+    if float(value) < float(threshold):
+        msg = 'activity value ({} USD) is below the {} USD threshold'.format(
+            value, threshold)
+        raise StepException(msg)
+
+    return xml
+
+
 @given(r'an IATI activity')
 def an_iati_activity(xml, **kwargs):
     if xml.tag != 'iati-activity':

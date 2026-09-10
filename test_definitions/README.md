@@ -116,6 +116,12 @@ files themselves:
 - **`4.2_location_activity_scope_exclusion.feature`** duplicates the location test with
   an additional `activity-scope` exclusion. Annex 4 of the proposal specifies the
   location test without it. One of the two should be dropped.
+- **Which document tests take a threshold.** The 4.8 table marks 4.8.2, 4.8.3,
+  4.8.4 and 4.8.6 with note [1], but not 4.8.7 (project performance and evaluation)
+  — even though the introduction to that section uses evaluations as its example of
+  something that "may not be realistic or reasonable to expect for smaller
+  projects". The threshold has been applied to 4.8.7 as well, on the strength of the
+  prose; confirm whether the table's omission was deliberate.
 - **Documents and organisation files.** The proposal notes that the document types
   assessed are those used by the ATI for government donors, and that further
   consultation is needed on which documents are relevant for other organisation types.
@@ -130,6 +136,17 @@ files themselves:
 - Placeholder tests use `Given this test is not yet implemented`, which returns
   "not relevant" for every input. Note that this is indistinguishable, in the result,
   from a genuine publisher-type exclusion.
+- Indicators the proposal restricts to larger projects carry the guard
+  `And the activity value is at least 100000 USD`. The figure is a provisional
+  placeholder: the proposal says the threshold "would need to be consulted on".
+  The activity's value is expected to be calculated for the whole activity in
+  advance, in USD, and passed to the runner as `activity_value` — working it out
+  needs currency conversion and a decision about which transactions count, neither
+  of which belongs in an individual test. **The runner does not supply it yet**, and
+  until it does the step does not filter anything, so these tests behave exactly as
+  they did before the threshold was added. See
+  `tests/test_activity_value_threshold.py`, which pins down the behaviour with and
+  without a value so it is not changed by accident.
 - `current_data.feature` defines the "activity is current" precondition shared by most
   activity-level tests. It is implemented in `step_definitions.py` rather than composed
   from the feature file.
