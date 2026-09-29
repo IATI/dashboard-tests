@@ -99,10 +99,31 @@ they can be written:
   comes from a donor publisher, which is precisely the automatic credit the proposal
   removes.
 
-- **4.7 Organisation identifiers** — needs both organisation and activity files. The
-  proposal requires assessing whether organisation identifiers are correctly
-  structured. The Dashboard already runs these tests so we need to find a way to pull
-  them in.
+- **4.7 Organisation identifiers** — the proposal assesses whether organisations are
+  using correctly structured organisation identifiers. Annex 4 scores this as "the
+  proportion of relevant participating organisations that have valid references",
+  averaged across an organisation's activities, so it is a proportion rather than a
+  per-activity pass or fail. It needs only activity files, but it needs all of them.
+
+  IATI Stats already calculates it, per publisher and per organisation role:
+
+      /stats/current/aggregated-publisher/<publisher>/
+        implementing_org_transaction_stats.json
+        receiver_org_transaction_stats.json
+
+  Each returns `total_orgs`, `total_refs`, `total_valid_refs`, `total_full_refs` and
+  `total_notself_refs`, so the score is `total_valid_refs / total_orgs`. For GAC that
+  was 6,387 of 8,782 implementing organisations, i.e. 72.7% carrying a valid
+  reference.
+
+  Before using these figures, note that the IATI Stats calculation is **not
+  restricted to current activities**: `_transaction_org_stats` iterates every
+  transaction of every activity, with no filter on activity status or date, and
+  nothing filters the activities before it is called. Every other indicator here is
+  scoped by `And the activity is current`, so as things stand 4.7 would be measured
+  over a different population from the rest of the framework — counting
+  organisations from activities that closed years ago. The same question applies to
+  the traceability figures behind 3.3, which have not been checked.
 
 ## Open questions
 
@@ -118,12 +139,6 @@ they can be written:
   assertion rather than just filtering — note [3] on 1.7, where NGOs are assessed on
   the previous year rather than forward projections — it becomes two scenarios with
   complementary guards.
-
-  Two things still need deciding:
-
-  - when checking for the `reporting-org/@type`, `is one of` treats an absent value as
-    passing, so an activity with no declared type satisfies both sides of a
-    complementary pair of guards.
 - **Which document tests take a threshold.** The 4.8 table marks 4.8.2, 4.8.3,
   4.8.4 and 4.8.6 with note [1], but not 4.8.7 (project performance and evaluation)
   — even though the introduction to that section uses evaluations as its example of
