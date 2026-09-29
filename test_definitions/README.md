@@ -104,16 +104,6 @@ they can be written:
   structured. The Dashboard already runs these tests so we need to find a way to pull
   them in.
 
-Definitions that need confirming or extending, flagged with `TODO` comments in the
-files themselves:
-
-- **2.1 Reporting Organisation** — new. The tests don't currently test whether the organisation's name is present.
-- **2.9 Country or region** — new, and not defined in Annex 4, so the definition
-  needs confirming. Only DAC regions (`recipient-region` with no `@vocabulary`, or
-  `@vocabulary="1"`) count towards the indicator, so that an activity must identify
-  where the money goes in country or DAC region codes but is not marked down for
-  additionally publishing UN region codes.
-
 ## Open questions
 
 - **Publisher type.** Several indicators in the proposal carry publisher-type rules —
