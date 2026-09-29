@@ -132,10 +132,8 @@ files themselves:
   Two things still need deciding:
 
   - when checking for the `reporting-org/@type`, `is one of` treats an absent value as
-    passing.
-- **`4.2_location_activity_scope_exclusion.feature`** duplicates the location test with
-  an additional `activity-scope` exclusion. Annex 4 of the proposal specifies the
-  location test without it. One of the two should be dropped.
+    passing, so an activity with no declared type satisfies both sides of a
+    complementary pair of guards.
 - **Which document tests take a threshold.** The 4.8 table marks 4.8.2, 4.8.3,
   4.8.4 and 4.8.6 with note [1], but not 4.8.7 (project performance and evaluation)
   — even though the introduction to that section uses evaluations as its example of

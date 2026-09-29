@@ -1,4 +1,5 @@
 # ATI test 7
+@iati-organisation
 Feature: Strategy (country/sector) or Memorandum of Understanding
 
   Scenario: Strategy (country/sector) or Memorandum of Understanding

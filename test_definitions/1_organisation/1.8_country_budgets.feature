@@ -1,4 +1,5 @@
 # ATI test 10
+@iati-organisation
 Feature: Country budgets
 
   Scenario: Disaggregated budget
