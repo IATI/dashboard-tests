@@ -88,8 +88,11 @@ Definitions that need confirming or extending, flagged with `TODO` comments in t
 files themselves:
 
 - **2.1 Reporting Organisation** — new. The tests don't currently test whether the organisation's name is present.
-- **2.9 Country or region** — new. Codes are not
-  yet validated against the Country and Region codelists.
+- **2.9 Country or region** — new, and not defined in Annex 4, so the definition
+  needs confirming. Only DAC regions (`recipient-region` with no `@vocabulary`, or
+  `@vocabulary="1"`) count towards the indicator, so that an activity must identify
+  where the money goes in country or DAC region codes but is not marked down for
+  additionally publishing UN region codes.
 
 ## Open questions
 
@@ -146,7 +149,9 @@ files themselves:
   without a value so it is not changed by accident.
 - `` `X` is present `` guards a scenario on an element actually being there, so an
   indicator applies only where what it depends on exists: 4.4 uses it to filter out
-  activities with no recipient country rather than failing them. It is registered
+  activities with no recipient country rather than failing them, and 2.9 uses it to
+  validate country and region codes against their two separate codelists without
+  marking down an activity that uses only one of the two. It is registered
   before the more general `` `X` is <const> `` step, because whichever pattern is
   registered first wins and `is present` would otherwise be read as a comparison
   against the literal string "present".
