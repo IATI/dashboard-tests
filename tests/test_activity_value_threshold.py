@@ -27,10 +27,14 @@ class TestActivityValueThreshold(TestCase):
         self.test = self.feature.tests[0]
 
     def qualifying_activity(self, conditions=True):
+        # 4.6 is also restricted to activities implemented through government, so the
+        # fixture needs an implementing organisation of type 10 to reach the
+        # threshold guard at all.
         xml = '''
         <iati-activity>
           <activity-status code="2"/>
           <default-aid-type code="C01"/>
+          <participating-org role="4" type="10"/>
           {}
         </iati-activity>
         '''.format('<conditions attached="1"/>' if conditions else '')
