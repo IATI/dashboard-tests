@@ -1,4 +1,6 @@
 from datetime import date, datetime, timedelta
+import csv
+import os
 import re
 
 from bdd_tester import given, then, StepException
@@ -59,6 +61,88 @@ def an_iati_activity(xml, **kwargs):
         msg = 'Not an IATI activity'
         raise StepException(msg)
     return xml
+
+
+# NB registered before the more general "`X` is <const>" step below, because dict
+# insertion order decides which pattern matches first - "`X` is present" would
+# otherwise be read as a comparison against the literal string "present".
+@given(r'`([^`]+)` is present')
+def given_is_present(xml, xpath_expression, **kwargs):
+    if len(xml.xpath(xpath_expression)) == 0:
+        msg = '`{}` not found'.format(xpath_expression)
+        raise StepException(msg)
+    return xml
+
+
+XML_LANG = '{http://www.w3.org/XML/1998/namespace}lang'
+
+_COUNTRY_LANGUAGES = None
+
+
+def _load_country_languages():
+    """Read data/country_lang_map.csv into {country code: set of language codes}.
+
+    Rows that are not a two-letter country code plus a two-letter language code are
+    skipped, which drops the header and the two "Notes:" rows.
+    """
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                        'data', 'country_lang_map.csv')
+    mapping = {}
+    with open(path) as f:
+        for row in csv.reader(f):
+            if len(row) < 3:
+                continue
+            country, language = row[0].strip(), row[2].strip()
+            if len(country) != 2 or len(language) != 2:
+                continue
+            mapping.setdefault(country.upper(), set()).add(language.lower())
+    return mapping
+
+
+@then(r'`([^`]+)` should be in an official language of the recipient country')
+def then_in_official_language(xml, xpath_expression, **kwargs):
+    global _COUNTRY_LANGUAGES
+
+    country_languages = kwargs.get('country_languages')
+    if country_languages is None:
+        if _COUNTRY_LANGUAGES is None:
+            _COUNTRY_LANGUAGES = _load_country_languages()
+        country_languages = _COUNTRY_LANGUAGES
+
+    countries = [c.upper() for c in xml.xpath(
+        'recipient-country/@code | transaction/recipient-country/@code')]
+
+    official = set()
+    for country in countries:
+        official |= set(country_languages.get(country, ()))
+
+    # No languages on record for these countries is a gap in the reference data, not
+    # something to mark the publisher down for. An invalid country code is caught by
+    # indicator 2.9 instead.
+    if not official:
+        return xml
+
+    default_language = xml.get(XML_LANG) or xml.get('default-language')
+
+    narratives = xml.xpath(xpath_expression + '/narrative')
+    if len(narratives) == 0:
+        msg = '`{}` has no narrative'.format(xpath_expression)
+        raise StepException(msg)
+
+    declared = []
+    for narrative in narratives:
+        language = narrative.get(XML_LANG) or default_language
+        if language and language.lower() in official:
+            return xml
+        declared.append(language.lower() if language else 'none declared')
+
+    msg = '`{}` is in {}, not an official language of {} ({})'.format(
+        xpath_expression,
+        ', '.join(declared),
+        ', '.join(countries),
+        ', '.join(sorted(official)),
+    )
+    raise StepException(msg)
 
 
 @then(r'skip it')

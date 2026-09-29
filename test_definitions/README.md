@@ -71,7 +71,7 @@ dimension. File names follow the indicator numbering used in the proposal.
 
 ## Still to do
 
-Every indicator in the proposal now has a file. Three of them are placeholders that
+Every indicator in the proposal now has a file. Two of them are placeholders that
 return "not relevant" rather than a result, so they are excluded from scoring until
 they can be written:
 
@@ -79,8 +79,6 @@ they can be written:
   redefines it as the share of a publisher's spend traceable to downstream partners,
   with the direction of traceability depending on publisher type. The Dashboard
   already runs these tests so we need to find a way to pull them in.
-- **4.4 Recipient language** — needs a mapping from recipient country to official
-  languages, which the runner has no access to.
 - **4.7 Organisation identifiers** — needs both organisation and activity files. The
   proposal requires assessing whether organisation identifiers are correctly
   structured. The Dashboard already runs these tests so we need to find a way to pull
@@ -146,6 +144,15 @@ files themselves:
   they did before the threshold was added. See
   `tests/test_activity_value_threshold.py`, which pins down the behaviour with and
   without a value so it is not changed by accident.
+- `` `X` is present `` guards a scenario on an element actually being there, so an
+  indicator applies only where what it depends on exists: 4.4 uses it to filter out
+  activities with no recipient country rather than failing them. It is registered
+  before the more general `` `X` is <const> `` step, because whichever pattern is
+  registered first wins and `is present` would otherwise be read as a comparison
+  against the literal string "present".
+- Reference data that a test needs in line lives in `data/`, with its provenance in
+  `data/README.md`. At present that is only the country-to-official-language map used
+  by 4.4, vendored from IATI Stats and overridable by passing `country_languages`.
 - `current_data.feature` defines the "activity is current" precondition shared by most
   activity-level tests. It is implemented in `step_definitions.py` rather than composed
   from the feature file.
