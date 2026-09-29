@@ -124,27 +124,26 @@ they can be written:
   over a different population from the rest of the framework — counting
   organisations from activities that closed years ago. The same question applies to
   the traceability figures behind 3.3, which have not been checked.
+- **Publisher-type exclusions on 1.3 to 1.8 are not implemented.** The Organisation
+  component carries notes [1], [2] and [3]: INGOs and NGOs excluded from 1.3, 1.4,
+  1.5 and 1.8; NGOs excluded from 1.6; and NGOs assessed on the previous year rather
+  than forward projections for 1.7. None of this is expressed, so every NGO publisher
+  is currently marked down on indicators the proposal says should not apply to them.
+  They can be written as ordinary guards on `reporting-org/@type`, which both
+  `iati-activity` and `iati-organisation` carry, with no change to the runner. 1.7 is
+  the awkward one: it needs two scenarios with complementary guards and a
+  backward-looking `Then` step that does not exist yet.
 
 ## Open questions
 
-- **Publisher type.** Several indicators in the proposal carry publisher-type rules —
-  INGOs or NGOs excluded, forward budgets assessed as previous-year for NGOs,
-  traceability direction varying by organisation type. These can be expressed
-  directly in Gherkin: both `iati-activity` and `iati-organisation` carry
-  `reporting-org/@type`, which holds the OrganisationType code the proposal's rules
-  key on (10-15 government, 21-24 NGO, 30/40 multilateral, 60 foundation, 70+ private
-  sector). The existing `is one of` / `is not any of` steps handle it with no change
-  to the runner, and an excluded activity returns "not relevant" rather than a
-  failure, which is what the weighting rule requires. Where a rule changes the
-  assertion rather than just filtering — note [3] on 1.7, where NGOs are assessed on
-  the previous year rather than forward projections — it becomes two scenarios with
-  complementary guards.
-- **Which document tests take a threshold.** The 4.8 table marks 4.8.2, 4.8.3,
-  4.8.4 and 4.8.6 with note [1], but not 4.8.7 (project performance and evaluation)
-  — even though the introduction to that section uses evaluations as its example of
-  something that "may not be realistic or reasonable to expect for smaller
-  projects". The threshold has been applied to 4.8.7 as well, on the strength of the
-  prose; confirm whether the table's omission was deliberate.
+- **What the thresholds should be.** Six tests are restricted to larger projects —
+  4.6 Conditions, and documents 4.8.2 conditions, 4.8.3 tender, 4.8.4 contract,
+  4.8.6 impact appraisal and 4.8.7 performance and evaluation. All six currently use
+  a provisional 100,000 USD, which is a placeholder rather than a proposal: the
+  proposal says only that the figure "would need to be consulted on". Worth settling
+  both the figure and whether one figure suits all six — a project performance and
+  evaluation document is a heavier ask of a publisher than a budget document, so they
+  may not warrant the same cut-off.
 - **Documents and organisation files.** The proposal notes that the document types
   assessed are those used by the ATI for government donors, and that further
   consultation is needed on which documents are relevant for other organisation types.
