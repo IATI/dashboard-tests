@@ -90,7 +90,6 @@ Definitions that need confirming or extending, flagged with `TODO` comments in t
 files themselves:
 
 - **2.1 Reporting Organisation** — new. The tests don't currently test whether the organisation's name is present.
-- **2.3 Implementing organisation** — currently checks `@ref` or narrative only; the proposal also requires assessing `participating-org/@type`. This should possibly be done as a separate test.
 - **2.9 Country or region** — new. Codes are not
   yet validated against the Country and Region codelists.
 
