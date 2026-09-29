@@ -20,6 +20,12 @@ def given_mixed_content(xml, **kwargs):
     raise StepException(msg)
 
 
+@given(r'this test involves activity files from other organisations')
+def given_cross_publisher(xml, **kwargs):
+    msg = 'Not possible to test from a single activity'
+    raise StepException(msg)
+
+
 @given(r'this test is not yet implemented')
 def given_not_implemented(xml, **kwargs):
     msg = 'Not yet implemented'

@@ -75,10 +75,30 @@ Every indicator in the proposal now has a file. Two of them are placeholders tha
 return "not relevant" rather than a result, so they are excluded from scoring until
 they can be written:
 
-- **3.3 Traceability** — needs both organisation and activity files. The proposal
-  redefines it as the share of a publisher's spend traceable to downstream partners,
-  with the direction of traceability depending on publisher type. The Dashboard
-  already runs these tests so we need to find a way to pull them in.
+- **3.3 Traceability** — the proposal redefines this as *"the % of this
+  organisation's spend which is traceable to downstream partners"*: a spend-weighted
+  figure for the whole publisher, not a per-activity pass or fail, so it cannot come
+  from a test in this repository. The direction depends on the publisher's
+  organisation type — downward for government publishers and foundations, upward for
+  NGOs, the private sector, academic and other, both for multilaterals. NB the
+  proposal's ranges do not map exactly onto the OrganisationType codelist: 12, 13 and
+  14 are not codes on it, and 80 and 90 fall outside its stated groups (they are
+  treated as upward here).
+
+  IATI Stats already calculates both directions. The downward one is in exactly the
+  form the proposal asks for, as a numerator and denominator per publisher:
+
+      /stats/current/aggregated-publisher/<publisher>/
+        traceable_sum_commitments_and_disbursements_by_publisher_id.json
+        traceable_sum_commitments_and_disbursements_by_publisher_id_denominator.json
+
+  For FCDO these were 17.13bn of 379.43bn USD, i.e. 4.5% of commitments and
+  disbursements traceable. The upward one is `transaction_traceability` in IATI
+  Stats' `analytics.py`, which looks for `provider-org/@provider-activity-id` on
+  incoming funds — note that it currently passes automatically when the activity
+  comes from a donor publisher, which is precisely the automatic credit the proposal
+  removes.
+
 - **4.7 Organisation identifiers** — needs both organisation and activity files. The
   proposal requires assessing whether organisation identifiers are correctly
   structured. The Dashboard already runs these tests so we need to find a way to pull
