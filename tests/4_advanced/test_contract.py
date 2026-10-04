@@ -8,15 +8,14 @@ from lxml import etree
 class TestProcurement(TestCase):
     def setUp(self):
         self.FILEPATH = dirname(realpath(__file__))
-        steps_path = join(self.FILEPATH, '..', '..', '..', 'test_definitions',
+        steps_path = join(self.FILEPATH, '..', '..', 'test_definitions',
                           'step_definitions.py')
-        feature_path = join(self.FILEPATH, '..', '..', '..', 'test_definitions',
-                            '4_advanced', '4.8_documents',
-                            '4.8.4_contract.feature')
+        feature_path = join(self.FILEPATH, '..', '..', 'test_definitions',
+                            '4_advanced', '4.8_documents.feature')
 
         tester = BDDTester(steps_path)
         feature = tester.load_feature(feature_path)
-        self.test = feature.tests[0]
+        self.test = feature.tests[3]  # 4.8.4
 
     def test_contract_is_present(self):
         xml = '''

@@ -8,15 +8,14 @@ from lxml import etree
 class TestReviewsAndEvaluations(TestCase):
     def setUp(self):
         self.FILEPATH = dirname(realpath(__file__))
-        steps_path = join(self.FILEPATH, '..', '..', '..', 'test_definitions',
+        steps_path = join(self.FILEPATH, '..', '..', 'test_definitions',
                           'step_definitions.py')
-        feature_path = join(self.FILEPATH, '..', '..', '..', 'test_definitions',
-                            '4_advanced', '4.8_documents',
-                            '4.8.7_performance_and_evaluation.feature')
+        feature_path = join(self.FILEPATH, '..', '..', 'test_definitions',
+                            '4_advanced', '4.8_documents.feature')
 
         tester = BDDTester(steps_path)
         feature = tester.load_feature(feature_path)
-        self.test = feature.tests[0]
+        self.test = feature.tests[6]  # 4.8.7
 
     def test_activity_in_implementation_so_ignore(self):
         xml = '''

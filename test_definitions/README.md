@@ -54,20 +54,29 @@ dimension. File names follow the indicator numbering used in the proposal.
 | 4.5 | Results | `4_advanced/4.5_results.feature` | 35 |
 | 4.6 | Conditions | `4_advanced/4.6_conditions.feature` | 24 |
 | 4.7 | Organisation identifiers | `4_advanced/4.7_organisation_identifiers.feature` | 30 |
-| 4.8 | Documents | `4_advanced/4.8_documents/` | see below |
+| 4.8 | Documents | `4_advanced/4.8_documents.feature` | see below |
 
 ### 4.8 Documents
 
-| # | Test | File | ATI test |
+The proposal disaggregates documents "into multiple tests, while retaining it as a
+single indicator", so all eight are scenarios of one feature file. That matters for
+scoring as well as tidiness: IATI Stats groups tests by feature filename and scores a
+component as the mean over features, so eight files would give documents 8/15 of the
+advanced fields component rather than 1/8.
+
+| # | Test | Scenario | ATI test |
 | --- | --- | --- | --- |
-| 4.8.1 | Budget | `4.8_documents/4.8.1_budget.feature` | 12 |
-| 4.8.2 | Conditions | `4.8_documents/4.8.2_conditions.feature` | 24 |
-| 4.8.3 | Tender | `4.8_documents/4.8.3_tender.feature` | 31 |
-| 4.8.4 | Contract | `4.8_documents/4.8.4_contract.feature` | 31 |
-| 4.8.5 | Objectives | `4.8_documents/4.8.5_objectives.feature` | 32 |
-| 4.8.6 | Pre- and/or post-project impact appraisal | `4.8_documents/4.8.6_impact_appraisal.feature` | 33 |
-| 4.8.7 | Project performance and evaluation | `4.8_documents/4.8.7_performance_and_evaluation.feature` | 34 |
-| 4.8.8 | Results | `4.8_documents/4.8.8_results.feature` | 35 |
+| 4.8.1 | Budget | Budget document is present | 12 |
+| 4.8.2 | Conditions | Conditions document | 24 |
+| 4.8.3 | Tender | Tender is present | 31 |
+| 4.8.4 | Contract | Contract is present | 31 |
+| 4.8.5 | Objectives | Objectives of activity document | 32 |
+| 4.8.6 | Pre- and/or post-project impact appraisal | Pre- and/or post-project impact appraisal documents | 33 |
+| 4.8.7 | Project performance and evaluation | Project performance and evaluation document | 34 |
+| 4.8.8 | Results | Results document | 35 |
+
+All eight live in `4_advanced/4.8_documents.feature`, in the order above, and each
+scenario carries its 4.8.x number as a comment.
 
 ## Still to do
 
