@@ -1,6 +1,6 @@
 # ATI test 8
 @iati-organisation
-Feature: Audit
+Feature: Audit report
 
   Scenario: Audit is present
     Given file is an organisation file
