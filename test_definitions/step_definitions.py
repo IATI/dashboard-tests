@@ -308,10 +308,18 @@ def given_activity_is_current(xml, **kwargs):
     for transaction in transactions:
         transaction_date = 'transaction-date/@iso-date'
         try:
-            return given_is_less_than_x_months_ago(
+            given_is_less_than_x_months_ago(
                 transaction, transaction_date, 12, **kwargs)
         except StepException:
             pass
+        else:
+            # Return the activity, not the transaction the date was found on.
+            # Whatever a given step returns becomes the subject of every later
+            # step in the scenario, so returning the transaction made the rest of
+            # the scenario evaluate against it - an activity whose only claim to
+            # being current was a recent transaction date would then fail checks
+            # on activity-level elements it actually had.
+            return xml
 
     msg = 'Activity is not current'
     raise StepException(msg)
