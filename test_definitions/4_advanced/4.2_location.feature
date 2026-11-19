@@ -3,7 +3,7 @@
 Feature: Location (sub-national)
 
   @4.2.1_location_present
-  Scenario Outline: Location
+  Scenario Outline: Location is present
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4
@@ -13,7 +13,7 @@ Feature: Location (sub-national)
      Then `location` should be present
 
   @4.2.2_location_point_or_administrative
-  Scenario Outline: Location point or administrative or location-id
+  Scenario Outline: Location has a point or a coded area
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4

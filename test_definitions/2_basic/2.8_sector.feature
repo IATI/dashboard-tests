@@ -15,7 +15,7 @@ Feature: Sector
      Then every `sector[not(@vocabulary) or @vocabulary="1"]/@code | transaction/sector[@vocabulary="1" or not(@vocabulary)]/@code` should be on the Sector codelist
 
   @2.8.3_sector_detailed_crs_codes
-  Scenario Outline: Publish detailed CRS purpose codes in the sector field
+  Scenario Outline: Sector uses detailed CRS purpose codes
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4

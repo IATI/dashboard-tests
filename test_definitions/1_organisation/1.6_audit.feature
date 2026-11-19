@@ -3,6 +3,6 @@
 Feature: Audit report
 
   @1.6.1_audit
-  Scenario: Audit is present
+  Scenario: Audit report is present
     Given file is an organisation file
      Then `document-link/category[@code="B06"]` should be present

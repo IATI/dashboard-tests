@@ -67,13 +67,13 @@ advanced fields component rather than 1/8.
 | # | Test | Scenario | ATI test |
 | --- | --- | --- | --- |
 | 4.8.1 | Budget | Budget document is present | 12 |
-| 4.8.2 | Conditions | Conditions document | 24 |
-| 4.8.3 | Tender | Tender is present | 31 |
-| 4.8.4 | Contract | Contract is present | 31 |
-| 4.8.5 | Objectives | Objectives of activity document | 32 |
-| 4.8.6 | Pre- and/or post-project impact appraisal | Pre- and/or post-project impact appraisal documents | 33 |
-| 4.8.7 | Project performance and evaluation | Project performance and evaluation document | 34 |
-| 4.8.8 | Results | Results document | 35 |
+| 4.8.2 | Conditions | Conditions document is present | 24 |
+| 4.8.3 | Tender | Tender document is present | 31 |
+| 4.8.4 | Contract | Contract document is present | 31 |
+| 4.8.5 | Objectives | Objectives document or description is present | 32 |
+| 4.8.6 | Pre- and/or post-project impact appraisal | Impact appraisal document is present | 33 |
+| 4.8.7 | Project performance and evaluation | Evaluation document is present | 34 |
+| 4.8.8 | Results | Results document is present | 35 |
 
 All eight live in `4_advanced/4.8_documents.feature`, in the order above, and each
 scenario carries its 4.8.x number as a comment.

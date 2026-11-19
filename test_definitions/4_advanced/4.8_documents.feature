@@ -24,7 +24,7 @@ Feature: Documents
 
   # 4.8.2 - ATI test 24
   @4.8.2_conditions
-  Scenario Outline: Conditions document
+  Scenario Outline: Conditions document is present
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4
@@ -34,7 +34,7 @@ Feature: Documents
 
   # 4.8.3 - ATI test 31
   @4.8.3_tender
-  Scenario Outline: Tender is present
+  Scenario Outline: Tender document is present
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4
@@ -45,7 +45,7 @@ Feature: Documents
 
   # 4.8.4 - ATI test 31
   @4.8.4_contract
-  Scenario Outline: Contract is present
+  Scenario Outline: Contract document is present
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4
@@ -56,7 +56,7 @@ Feature: Documents
 
   # 4.8.5 - ATI test 32
   @4.8.5_objectives
-  Scenario Outline: Objectives of activity document
+  Scenario Outline: Objectives document or description is present
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4
@@ -65,7 +65,7 @@ Feature: Documents
 
   # 4.8.6 - ATI test 33
   @4.8.6_impact_appraisal
-  Scenario Outline: Pre- and/or post-project impact appraisal documents
+  Scenario Outline: Impact appraisal document is present
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4
@@ -78,7 +78,7 @@ Feature: Documents
   # evaluations as its example of something that "may not be realistic or reasonable
   # to expect for smaller projects", even though the table does not mark it [1].
   @4.8.7_performance_and_evaluation
-  Scenario Outline: Project performance and evaluation document
+  Scenario Outline: Evaluation document is present
     Given an IATI activity
      And the activity is current
      And `default-aid-type/@code` is not G01
@@ -88,7 +88,7 @@ Feature: Documents
 
   # 4.8.8 - ATI test 35
   @4.8.8_results
-  Scenario Outline: Results document
+  Scenario Outline: Results document is present
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4

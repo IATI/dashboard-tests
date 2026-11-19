@@ -3,7 +3,7 @@
 Feature: Results
 
   @4.5.1_results
-  Scenario Outline: Results data
+  Scenario Outline: Results are present
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4

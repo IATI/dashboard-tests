@@ -10,7 +10,7 @@
 Feature: Conditions
 
   @4.6.1_conditions
-  Scenario Outline: Conditions data
+  Scenario Outline: Conditions are present
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4
