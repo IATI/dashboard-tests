@@ -161,9 +161,17 @@ they can be written:
 ## Conventions
 
 - Feature-level tags (`@iati-activity`, `@iati-organisation`) record which kind of file
-  a test applies to. Note that the pinned `bdd-tester` does not expose feature-level
-  tags to scenarios at runtime — `Test.tags` is always empty — so nothing should depend
-  on reading them back from the parser.
+  a test applies to. IATI-Stats relies on them: it only runs a test against an element
+  whose tag is in the feature's tags. (The `bdd-tester` 0.0.6 pinned here for the unit
+  tests doesn't expose feature-level tags at all; IATI-Stats uses IATI's fork,
+  `bdd-tester@support-newer-gherkin`, which does.)
+- Every scenario carries a stable id as a scenario-level tag, of the form
+  `@<indicator>.<n>_<short_name>`, for example `@4.8.7_performance_and_evaluation`.
+  Use these, not scenario names, to refer to an individual test from outside this
+  repository, such as in IATI-Stats' hierarchy exclusions. Names get reworded; ids don't.
+  Once assigned, an id should not change, even if scenarios are reordered or renamed.
+  `current_data.feature` is the exception: it is the precondition rather than an
+  indicator test, so it has no id.
 - Placeholder tests use `Given this test is not yet implemented`, which returns
   "not relevant" for every input. Note that this is indistinguishable, in the result,
   from a genuine publisher-type exclusion.

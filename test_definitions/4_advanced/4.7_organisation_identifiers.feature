@@ -7,6 +7,7 @@
 @iati-activity
 Feature: Organisation identifiers
 
+  @4.7.1_organisation_identifiers
   Scenario: Organisation identifiers
     Given this test is calculated across an organisation's activities
      Then skip it

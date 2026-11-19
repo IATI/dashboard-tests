@@ -11,12 +11,14 @@
 @iati-activity
 Feature: Recipient language
 
+  @4.4.1_title_in_recipient_language
   Scenario Outline: Title is in an official language of the recipient country
     Given an IATI activity
      And the activity is current
      And `recipient-country/@code | transaction/recipient-country/@code` is present
      Then `title` should be in an official language of the recipient country
 
+  @4.4.2_description_in_recipient_language
   Scenario Outline: Description is in an official language of the recipient country
     Given an IATI activity
      And the activity is current

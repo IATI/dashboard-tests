@@ -4,11 +4,13 @@
 @iati-activity
 Feature: Reporting organisation
 
+  @2.1.1_reporting_organisation_present
   Scenario Outline: Reporting organisation is present
     Given an IATI activity
      And the activity is current
      Then `reporting-org/@ref` should be present
 
+  @2.1.2_reporting_organisation_type_valid
   Scenario Outline: Reporting organisation type is valid
     Given an IATI activity
      And the activity is current

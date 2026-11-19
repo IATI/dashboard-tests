@@ -2,6 +2,7 @@
 @iati-activity
 Feature: Results
 
+  @4.5.1_results
   Scenario Outline: Results data
     Given an IATI activity
      And the activity is current

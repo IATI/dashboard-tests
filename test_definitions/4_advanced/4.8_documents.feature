@@ -13,6 +13,7 @@
 Feature: Documents
 
   # 4.8.1 - ATI test 12
+  @4.8.1_budget
   Scenario Outline: Budget document is present
     Given an IATI activity
      And the activity is current
@@ -22,6 +23,7 @@ Feature: Documents
      Then `document-link/category[@code="A05"]` should be present
 
   # 4.8.2 - ATI test 24
+  @4.8.2_conditions
   Scenario Outline: Conditions document
     Given an IATI activity
      And the activity is current
@@ -31,6 +33,7 @@ Feature: Documents
      Then `document-link/category[@code="A04"]` should be present
 
   # 4.8.3 - ATI test 31
+  @4.8.3_tender
   Scenario Outline: Tender is present
     Given an IATI activity
      And the activity is current
@@ -41,6 +44,7 @@ Feature: Documents
      Then `document-link/category[@code="A10"]` should be present
 
   # 4.8.4 - ATI test 31
+  @4.8.4_contract
   Scenario Outline: Contract is present
     Given an IATI activity
      And the activity is current
@@ -51,6 +55,7 @@ Feature: Documents
      Then `document-link/category[@code="A06"] | document-link/category[@code="A11"]` should be present
 
   # 4.8.5 - ATI test 32
+  @4.8.5_objectives
   Scenario Outline: Objectives of activity document
     Given an IATI activity
      And the activity is current
@@ -59,6 +64,7 @@ Feature: Documents
      Then `document-link/category[@code="A02"] | description[@type="2"]` should be present
 
   # 4.8.6 - ATI test 33
+  @4.8.6_impact_appraisal
   Scenario Outline: Pre- and/or post-project impact appraisal documents
     Given an IATI activity
      And the activity is current
@@ -71,6 +77,7 @@ Feature: Documents
   # 4.8.7 - ATI test 34. Thresholded because the introduction to proposal 4.8 uses
   # evaluations as its example of something that "may not be realistic or reasonable
   # to expect for smaller projects", even though the table does not mark it [1].
+  @4.8.7_performance_and_evaluation
   Scenario Outline: Project performance and evaluation document
     Given an IATI activity
      And the activity is current
@@ -80,6 +87,7 @@ Feature: Documents
      Then `document-link/category[@code="A07"]` should be present
 
   # 4.8.8 - ATI test 35
+  @4.8.8_results
   Scenario Outline: Results document
     Given an IATI activity
      And the activity is current

@@ -9,6 +9,7 @@
 @iati-activity
 Feature: Conditions
 
+  @4.6.1_conditions
   Scenario Outline: Conditions data
     Given an IATI activity
      And the activity is current

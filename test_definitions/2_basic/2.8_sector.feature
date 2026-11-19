@@ -2,16 +2,19 @@
 @iati-activity
 Feature: Sector
 
+  @2.8.1_sector_present
   Scenario Outline: Sector is present
     Given an IATI activity
      And the activity is current
      Then `sector | transaction/sector` should be present
 
+  @2.8.2_sector_dac_5_digit
   Scenario Outline: Sector uses DAC CRS 5 digit purpose codes
     Given an IATI activity
      And the activity is current
      Then every `sector[not(@vocabulary) or @vocabulary="1"]/@code | transaction/sector[@vocabulary="1" or not(@vocabulary)]/@code` should be on the Sector codelist
 
+  @2.8.3_sector_detailed_crs_codes
   Scenario Outline: Publish detailed CRS purpose codes in the sector field
     Given an IATI activity
      And the activity is current
