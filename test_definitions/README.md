@@ -11,7 +11,7 @@ dimension. File names follow the indicator numbering used in the proposal.
 | 1.2 | Annual report | `1_organisation/1.2_annual_report.feature` | 4 |
 | 1.3 | Allocation policy | `1_organisation/1.3_allocation_policy.feature` | 5 |
 | 1.4 | Procurement policy | `1_organisation/1.4_procurement_policy.feature` | 6 |
-| 1.5 | Strategy (country/sector or MoU) | `1_organisation/1.5_country_strategy_or_mou.feature` | 7 |
+| 1.5 | Country strategy or MoU | `1_organisation/1.5_country_strategy_or_mou.feature` | 7 |
 | 1.6 | Audit | `1_organisation/1.6_audit.feature` | 8 |
 | 1.7 | Organisation budget (1/2/3 years forward) | `1_organisation/1.7_organisation_budget.feature` | 9 |
 | 1.8 | Country budgets (1/2/3 years forward) | `1_organisation/1.8_country_budgets.feature` | 10 |
