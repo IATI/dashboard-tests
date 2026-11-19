@@ -8,13 +8,15 @@
 @iati-activity
 Feature: Implementing organisation
 
+  @2.3.1_implementing_organisation_name
   Scenario Outline: Implementing organisation name is present
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4
      Then `participating-org[@role="Implementing" or @role="4"]/narrative/text()` should have at least 1 characters
 
-  Scenario Outline: Implementing organisation type is valid
+  @2.3.2_implementing_organisation_type
+  Scenario Outline: Implementing organisation type uses the OrganisationType codelist
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4

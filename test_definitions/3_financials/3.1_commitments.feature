@@ -2,6 +2,7 @@
 @iati-activity
 Feature: Commitments
 
+  @3.1.1_commitments
   Scenario Outline: Commitment is present
     Given an IATI activity
      And the activity is current

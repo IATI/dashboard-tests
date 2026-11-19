@@ -2,7 +2,8 @@
 @iati-activity
 Feature: Location (sub-national)
 
-  Scenario Outline: Location
+  @4.2.1_location_present
+  Scenario Outline: Location is present
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4
@@ -11,7 +12,8 @@ Feature: Location (sub-national)
      And `transaction/aid-type/@code` is not any of B01, B02, F01, H01, H02, H03, H04, H05 or G01
      Then `location` should be present
 
-  Scenario Outline: Location point or administrative or location-id
+  @4.2.2_location_point_or_administrative
+  Scenario Outline: Location has a point or a coded area
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4

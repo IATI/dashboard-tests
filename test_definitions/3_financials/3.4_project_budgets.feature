@@ -2,7 +2,8 @@
 @iati-activity
 Feature: Project budgets
 
-  Scenario Outline: Budget available forward annually
+  @3.4.1_budget_forward_annually
+  Scenario Outline: Budget is available forward annually
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2 or 3
@@ -10,7 +11,8 @@ Feature: Project budgets
      And `activity-date[@type="3" or @type="4" or @type="end-planned" or @type="end-actual"]/@iso-date` is at least 6 months ahead
      Then `budget | planned-disbursement` should be available forward annually
 
-  Scenario Outline: Budget available forward quarterly
+  @3.4.2_budget_forward_quarterly
+  Scenario Outline: Budget is available forward quarterly
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2 or 3

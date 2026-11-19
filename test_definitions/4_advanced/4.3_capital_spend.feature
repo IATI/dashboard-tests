@@ -2,6 +2,7 @@
 @iati-activity
 Feature: Capital spend
 
+  @4.3.1_capital_spend
   Scenario Outline: Capital spend is present
     Given an IATI activity
      And the activity is current

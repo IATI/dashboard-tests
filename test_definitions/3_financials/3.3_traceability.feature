@@ -6,6 +6,7 @@
 @iati-activity
 Feature: Traceability
 
+  @3.3.1_traceability
   Scenario: Traceability
     Given this test involves activity files from other organisations
      Then skip it

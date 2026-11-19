@@ -67,13 +67,13 @@ advanced fields component rather than 1/8.
 | # | Test | Scenario | ATI test |
 | --- | --- | --- | --- |
 | 4.8.1 | Budget | Budget document is present | 12 |
-| 4.8.2 | Conditions | Conditions document | 24 |
-| 4.8.3 | Tender | Tender is present | 31 |
-| 4.8.4 | Contract | Contract is present | 31 |
-| 4.8.5 | Objectives | Objectives of activity document | 32 |
-| 4.8.6 | Pre- and/or post-project impact appraisal | Pre- and/or post-project impact appraisal documents | 33 |
-| 4.8.7 | Project performance and evaluation | Project performance and evaluation document | 34 |
-| 4.8.8 | Results | Results document | 35 |
+| 4.8.2 | Conditions | Conditions document is present | 24 |
+| 4.8.3 | Tender | Tender document is present | 31 |
+| 4.8.4 | Contract | Contract document is present | 31 |
+| 4.8.5 | Objectives | Objectives document or description is present | 32 |
+| 4.8.6 | Pre- and/or post-project impact appraisal | Impact appraisal document is present | 33 |
+| 4.8.7 | Project performance and evaluation | Evaluation document is present | 34 |
+| 4.8.8 | Results | Results document is present | 35 |
 
 All eight live in `4_advanced/4.8_documents.feature`, in the order above, and each
 scenario carries its 4.8.x number as a comment.
@@ -161,9 +161,17 @@ they can be written:
 ## Conventions
 
 - Feature-level tags (`@iati-activity`, `@iati-organisation`) record which kind of file
-  a test applies to. Note that the pinned `bdd-tester` does not expose feature-level
-  tags to scenarios at runtime — `Test.tags` is always empty — so nothing should depend
-  on reading them back from the parser.
+  a test applies to. IATI-Stats relies on them: it only runs a test against an element
+  whose tag is in the feature's tags. (The `bdd-tester` 0.0.6 pinned here for the unit
+  tests doesn't expose feature-level tags at all; IATI-Stats uses IATI's fork,
+  `bdd-tester@support-newer-gherkin`, which does.)
+- Every scenario carries a stable id as a scenario-level tag, of the form
+  `@<indicator>.<n>_<short_name>`, for example `@4.8.7_performance_and_evaluation`.
+  Use these, not scenario names, to refer to an individual test from outside this
+  repository, such as in IATI-Stats' hierarchy exclusions. Names get reworded; ids don't.
+  Once assigned, an id should not change, even if scenarios are reordered or renamed.
+  `current_data.feature` is the exception: it is the precondition rather than an
+  indicator test, so it has no id.
 - Placeholder tests use `Given this test is not yet implemented`, which returns
   "not relevant" for every input. Note that this is indistinguishable, in the result,
   from a genuine publisher-type exclusion.

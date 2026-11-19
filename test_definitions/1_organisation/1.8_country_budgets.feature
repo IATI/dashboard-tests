@@ -2,6 +2,7 @@
 @iati-organisation
 Feature: Country budgets
 
-  Scenario: Disaggregated budget
+  @1.8.1_country_budgets
+  Scenario: Country budgets are available
     Given this test involves both organisation and activity files
      Then skip it

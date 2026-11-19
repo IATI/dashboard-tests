@@ -13,6 +13,7 @@
 Feature: Documents
 
   # 4.8.1 - ATI test 12
+  @4.8.1_budget
   Scenario Outline: Budget document is present
     Given an IATI activity
      And the activity is current
@@ -22,7 +23,8 @@ Feature: Documents
      Then `document-link/category[@code="A05"]` should be present
 
   # 4.8.2 - ATI test 24
-  Scenario Outline: Conditions document
+  @4.8.2_conditions
+  Scenario Outline: Conditions document is present
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4
@@ -31,7 +33,8 @@ Feature: Documents
      Then `document-link/category[@code="A04"]` should be present
 
   # 4.8.3 - ATI test 31
-  Scenario Outline: Tender is present
+  @4.8.3_tender
+  Scenario Outline: Tender document is present
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4
@@ -41,7 +44,8 @@ Feature: Documents
      Then `document-link/category[@code="A10"]` should be present
 
   # 4.8.4 - ATI test 31
-  Scenario Outline: Contract is present
+  @4.8.4_contract
+  Scenario Outline: Contract document is present
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4
@@ -51,7 +55,8 @@ Feature: Documents
      Then `document-link/category[@code="A06"] | document-link/category[@code="A11"]` should be present
 
   # 4.8.5 - ATI test 32
-  Scenario Outline: Objectives of activity document
+  @4.8.5_objectives
+  Scenario Outline: Objectives document or description is present
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4
@@ -59,7 +64,8 @@ Feature: Documents
      Then `document-link/category[@code="A02"] | description[@type="2"]` should be present
 
   # 4.8.6 - ATI test 33
-  Scenario Outline: Pre- and/or post-project impact appraisal documents
+  @4.8.6_impact_appraisal
+  Scenario Outline: Impact appraisal document is present
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4
@@ -71,7 +77,8 @@ Feature: Documents
   # 4.8.7 - ATI test 34. Thresholded because the introduction to proposal 4.8 uses
   # evaluations as its example of something that "may not be realistic or reasonable
   # to expect for smaller projects", even though the table does not mark it [1].
-  Scenario Outline: Project performance and evaluation document
+  @4.8.7_performance_and_evaluation
+  Scenario Outline: Evaluation document is present
     Given an IATI activity
      And the activity is current
      And `default-aid-type/@code` is not G01
@@ -80,7 +87,8 @@ Feature: Documents
      Then `document-link/category[@code="A07"]` should be present
 
   # 4.8.8 - ATI test 35
-  Scenario Outline: Results document
+  @4.8.8_results
+  Scenario Outline: Results document is present
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4

@@ -2,6 +2,7 @@
 @iati-activity
 Feature: Disbursements and expenditures
 
+  @3.2.1_disbursements_and_expenditures
   Scenario Outline: Disbursements or expenditures are present
     Given an IATI activity
      And the activity is current
