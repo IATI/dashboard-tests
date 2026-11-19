@@ -10,7 +10,7 @@ Feature: Tied status
      Then `default-tied-status | transaction/tied-status` should be present
 
   @2.13.2_tied_status_valid
-  Scenario Outline: Tied status is valid
+  Scenario Outline: Tied status uses the TiedStatus codelist
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4

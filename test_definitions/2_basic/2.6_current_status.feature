@@ -9,7 +9,7 @@ Feature: Current status
      Then `activity-status` should be present
 
   @2.6.2_current_status_valid
-  Scenario Outline: Current status is valid
+  Scenario Outline: Current status uses the ActivityStatus codelist
     Given an IATI activity
      And the activity is current
      Then every `activity-status/@code` should be on the ActivityStatus codelist

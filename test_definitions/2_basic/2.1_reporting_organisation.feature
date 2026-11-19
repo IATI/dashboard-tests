@@ -11,7 +11,7 @@ Feature: Reporting organisation
      Then `reporting-org/@ref` should be present
 
   @2.1.2_reporting_organisation_type_valid
-  Scenario Outline: Reporting organisation type is valid
+  Scenario Outline: Reporting organisation type uses the OrganisationType codelist
     Given an IATI activity
      And the activity is current
      Then every `reporting-org/@type` should be on the OrganisationType codelist

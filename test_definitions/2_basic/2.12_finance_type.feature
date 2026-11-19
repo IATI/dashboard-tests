@@ -10,7 +10,7 @@ Feature: Finance type
      Then `default-finance-type | transaction/finance-type` should be present
 
   @2.12.2_finance_type_valid
-  Scenario Outline: Finance type is valid
+  Scenario Outline: Finance type uses the FinanceType codelist
     Given an IATI activity
      And the activity is current
      And `activity-status/@code` is one of 2, 3 or 4

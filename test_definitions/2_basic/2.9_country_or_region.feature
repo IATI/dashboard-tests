@@ -20,14 +20,14 @@ Feature: Country or region
      Then `recipient-country | transaction/recipient-country | recipient-region[not(@vocabulary) or @vocabulary="1"] | transaction/recipient-region[not(@vocabulary) or @vocabulary="1"]` should be present
 
   @2.9.2_recipient_country_codelist
-  Scenario Outline: Recipient country is valid
+  Scenario Outline: Recipient country uses the Country codelist
     Given an IATI activity
      And the activity is current
      And `recipient-country/@code | transaction/recipient-country/@code` is present
      Then every `recipient-country/@code | transaction/recipient-country/@code` should be on the Country codelist
 
   @2.9.3_recipient_region_codelist
-  Scenario Outline: Recipient region is valid
+  Scenario Outline: Recipient region uses the Region codelist
     Given an IATI activity
      And the activity is current
      And `recipient-region[not(@vocabulary) or @vocabulary="1"]/@code | transaction/recipient-region[not(@vocabulary) or @vocabulary="1"]/@code` is present
